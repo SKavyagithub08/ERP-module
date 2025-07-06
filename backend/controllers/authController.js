@@ -1,6 +1,8 @@
+
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
 
+// REGISTER USER
 const registerUser = async (req, res) => {
   const { name, username, email, password, role } = req.body;
 
@@ -12,6 +14,7 @@ const registerUser = async (req, res) => {
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
+
     const user = await User.create({
       name,
       username,
@@ -32,8 +35,10 @@ const registerUser = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+// LOGIN USER
 const loginUser = async (req, res) => {
-  const { login, password } = req.body; 
+  const { login, password, role } = req.body; // 👈 role now included
 
   try {
     const user = await User.findOne({
@@ -42,6 +47,10 @@ const loginUser = async (req, res) => {
 
     if (!user || !(await user.matchPassword(password))) {
       return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    if (role !== user.role) {
+      return res.status(403).json({ message: 'Role mismatch' });
     }
 
     res.json({
