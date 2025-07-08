@@ -38,3 +38,48 @@
 .login-container button:hover {
   background-color: #003a8c;
 }
+
+
+.docket-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.docket-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.docket-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.docket-container input,
+.docket-container select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.docket-container button {
+  padding: 12px;
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.docket-container button:hover {
+  background-color: #0056b3;
+}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { login } from '../services/authService';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import '../components/Login.css'; // Assuming you have a CSS file for styling
+import '../components/index.css'; // Assuming you have a CSS file for styling
 
 const Login = () => {
   const [loginData, setLoginData] = useState({ login: '', password: '' });
@@ -25,13 +25,6 @@ const Login = () => {
   };
 
   return (
-    // <form onSubmit={handleSubmit}>
-    //   <h2>ERP Login</h2>
-    //   <input name="login" placeholder="Username or Email" onChange={handleChange} />
-    //   <input name="password" type="password" placeholder="Password" onChange={handleChange} />
-    //   <button type="submit">Login</button>
-    // </form>
-
     <div className="login-container">
     <h2>ERP Login</h2>
     <form onSubmit={handleSubmit}>

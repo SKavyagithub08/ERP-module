@@ -1,10 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const docketRoutes = require('./routes/docketRoutes');
+
 
 const app = express();
 
 app.use(cors());
 app.use(express.json()); // Body parser
+app.use('/api/dockets', docketRoutes);
+app.use('/api/invoices', require('./routes/invoiceRoutes'));
+app.use('/api/outstanding', require('./routes/outstandingRoutes'));
 
 // Routes
 try {
