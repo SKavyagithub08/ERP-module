@@ -9,7 +9,11 @@ const SelectTransport = () => {
   const handleSelect = (type) => {
     // Save selected transport type in sessionStorage or context if needed
     sessionStorage.setItem('transportType', type);
-    navigate('/dashboard');
+    if (type === 'Domestic') {
+      navigate('/domestic');
+    } else if (type === 'Local') {
+      navigate('/local');
+    }
   };
 
   const handleRegisterUser = () => {
