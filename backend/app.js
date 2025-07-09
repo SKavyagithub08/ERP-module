@@ -9,6 +9,10 @@ const docketRoutes = require('./routes/docketRoutes');
 app.use('/api/dockets', docketRoutes);
 app.use('/api/invoices', require('./routes/invoiceRoutes'));
 app.use('/api/outstanding', require('./routes/outstandingRoutes'));
+app.use('/api/dispatch', require('./routes/dispatchRoutes'));
+app.use('/api/receipt', require('./routes/receiptRoutes'));
+app.use('/api/sales', require('./routes/salesRoutes'));
+
 
 
 

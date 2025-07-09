@@ -7,12 +7,19 @@ const SelectTransport = () => {
   const navigate = useNavigate();
 
   const handleSelect = (type) => {
-    // Save selected transport type in sessionStorage or context if needed
     sessionStorage.setItem('transportType', type);
-    if (type === 'Domestic') {
-      navigate('/domestic');
-    } else if (type === 'Local') {
-      navigate('/local');
+    const role = user?.role;
+
+    if (role === 'party Master') {
+      navigate('/docket-booking');
+    } else if (role === 'vehicle Master') {
+      navigate('/vehicle-dispatch');
+    } else if (role === 'master') {
+      if (type === 'Domestic') {
+        navigate('/domestic-dashboard');
+      } else if (type === 'Local') {
+        navigate('/local-dashboard');
+      }
     }
   };
 
