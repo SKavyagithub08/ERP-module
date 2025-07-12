@@ -24,7 +24,7 @@ const RegisterUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://erp-module-3.onrender.com/api/auth/register', formData);
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/register`, formData);
       alert('✅ User registered successfully!');
       navigate('/select-transport');
     } catch (err) {
