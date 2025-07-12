@@ -55,7 +55,7 @@ const DocketBooking = () => {
     const { subTotal, grandTotal } = calculateTotals();
 
     try {
-      const res = await axios.post('http://localhost:5000/api/dockets/create', {
+      const res = await axios.post('https://erp-module-3.onrender.com/api/dockets/create', {
         ...formData,
         subTotal,
         grandTotal,

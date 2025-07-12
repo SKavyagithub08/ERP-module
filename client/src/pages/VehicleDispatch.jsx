@@ -34,7 +34,7 @@ const VehicleDispatch = () => {
     };
 
     try {
-      await axios.post('http://localhost:5000/api/dispatch/create', data);
+      await axios.post('https://erp-module-3.onrender.com/api/dispatch/create', data);
       alert('🚚 Dispatch + Payment + Sales Report created!');
       
       // Redirect after successful submission

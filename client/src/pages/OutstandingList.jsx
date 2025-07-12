@@ -9,7 +9,7 @@ const OutstandingList = () => {
 
   useEffect(() => {
     const transportType = sessionStorage.getItem('transportType');
-    axios.get(`http://localhost:5000/api/outstanding?transportType=${transportType}`)
+    axios.get(`https://erp-module-3.onrender.com/api/outstanding?transportType=${transportType}`)
       .then(res => setOutstanding(res.data))
       .catch(err => alert("Failed to load outstanding"));
   }, []);

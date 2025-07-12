@@ -64,7 +64,7 @@ const SalesReport = () => {
     const fetchReports = async () => {
       try {
         const transportType = sessionStorage.getItem('transportType');
-        const response = await axios.get(`http://localhost:5000/api/sales/all?transportType=${transportType}`);
+        const response = await axios.get(`https://erp-module-3.onrender.com/api/sales/all?transportType=${transportType}`);
         setReports(response.data);
       } catch (error) {
         console.error('Error fetching sales reports:', error);
