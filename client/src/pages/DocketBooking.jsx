@@ -55,7 +55,8 @@ const DocketBooking = () => {
     const { subTotal, grandTotal } = calculateTotals();
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/dockets/create`, {
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://erp-module-1k4b.onrender.com';
+      const res = await axios.post(`${apiUrl}/api/dockets/create`, {
         ...formData,
         subTotal,
         grandTotal,
@@ -65,7 +66,7 @@ const DocketBooking = () => {
       console.log(res.data);
     } catch (err) {
       alert('Error submitting docket');
-      console.error(err);
+      console.error('Docket error:', err.response?.data || err.message);
     }
   };
 

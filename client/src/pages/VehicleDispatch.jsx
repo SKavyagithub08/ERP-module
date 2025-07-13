@@ -34,7 +34,8 @@ const VehicleDispatch = () => {
     };
 
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/dispatch/create`, data);
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://erp-module-1k4b.onrender.com';
+      await axios.post(`${apiUrl}/api/dispatch/create`, data);
       alert('🚚 Dispatch + Payment + Sales Report created!');
       
       // Redirect after successful submission
@@ -42,7 +43,7 @@ const VehicleDispatch = () => {
 
     } catch (err) {
       alert('❌ Failed. Check console.');
-      console.error(err);
+      console.error('Dispatch error:', err.response?.data || err.message);
     }
   };
 

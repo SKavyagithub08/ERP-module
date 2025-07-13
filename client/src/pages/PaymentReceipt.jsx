@@ -62,7 +62,8 @@ const PaymentReceipt = () => {
   useEffect(() => {
     const fetchReceipts = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/receipt/all`);
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://erp-module-1k4b.onrender.com';
+        const response = await axios.get(`${apiUrl}/api/receipt/all`);
         setReceipts(response.data);
       } catch (error) {
         console.error('Error fetching payment receipts:', error);

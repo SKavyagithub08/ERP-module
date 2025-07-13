@@ -9,9 +9,13 @@ const InvoiceList = () => {
 
   useEffect(() => {
     const transportType = sessionStorage.getItem('transportType');
-    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/invoices?transportType=${transportType}`)
+    const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://erp-module-1k4b.onrender.com';
+    axios.get(`${apiUrl}/api/invoices?transportType=${transportType}`)
       .then(res => setInvoices(res.data))
-      .catch(err => alert("Failed to load invoices"));
+      .catch(err => {
+        console.error('Invoice error:', err.response?.data || err.message);
+        alert("Failed to load invoices");
+      });
   }, []);
 
   const downloadSinglePDF = (inv) => {

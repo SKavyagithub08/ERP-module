@@ -3,7 +3,19 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors());
+// Configure CORS for production
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5173', // Vite dev server
+    'https://erp-module-2-8kbl.onrender.com' // Your frontend Render URL
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json()); // Body parser
 const docketRoutes = require('./routes/docketRoutes');
 app.use('/api/dockets', docketRoutes);

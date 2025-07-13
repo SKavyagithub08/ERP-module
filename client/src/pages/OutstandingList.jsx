@@ -9,9 +9,13 @@ const OutstandingList = () => {
 
   useEffect(() => {
     const transportType = sessionStorage.getItem('transportType');
-    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/outstanding?transportType=${transportType}`)
+    const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://erp-module-1k4b.onrender.com';
+    axios.get(`${apiUrl}/api/outstanding?transportType=${transportType}`)
       .then(res => setOutstanding(res.data))
-      .catch(err => alert("Failed to load outstanding"));
+      .catch(err => {
+        console.error('Outstanding error:', err.response?.data || err.message);
+        alert("Failed to load outstanding");
+      });
   }, []);
 
   const downloadSinglePDF = (due) => {

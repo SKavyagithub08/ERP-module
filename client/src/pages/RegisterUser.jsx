@@ -24,10 +24,12 @@ const RegisterUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/register`, formData);
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://erp-module-1k4b.onrender.com';
+      await axios.post(`${apiUrl}/api/auth/register`, formData);
       alert('✅ User registered successfully!');
       navigate('/select-transport');
     } catch (err) {
+      console.error('Registration error:', err.response?.data || err.message);
       alert('❌ Registration failed: ' + err.response?.data?.message);
     }
   };

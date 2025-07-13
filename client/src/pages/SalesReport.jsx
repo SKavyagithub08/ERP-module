@@ -64,7 +64,8 @@ const SalesReport = () => {
     const fetchReports = async () => {
       try {
         const transportType = sessionStorage.getItem('transportType');
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/sales/all?transportType=${transportType}`);
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://erp-module-1k4b.onrender.com';
+        const response = await axios.get(`${apiUrl}/api/sales/all?transportType=${transportType}`);
         setReports(response.data);
       } catch (error) {
         console.error('Error fetching sales reports:', error);
