@@ -40,12 +40,25 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   const { login, password, role } = req.body; // 👈 role now included
 
+  console.log('🔍 Login attempt:', { login, role, password: password ? '***' : 'empty' });
+
   try {
     const user = await User.findOne({
       $or: [{ email: login }, { username: login }],
     });
 
-    if (!user || !(await user.matchPassword(password))) {
+    console.log('👤 User found:', user ? { username: user.username, email: user.email, role: user.role } : 'No user found');
+
+    if (!user) {
+      console.log('❌ No user found with email/username:', login);
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const passwordMatch = await user.matchPassword(password);
+    console.log('🔐 Password match:', passwordMatch);
+
+    if (!passwordMatch) {
+      console.log('❌ Password mismatch for user:', user.username);
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
