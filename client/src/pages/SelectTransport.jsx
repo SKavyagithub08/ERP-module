@@ -10,15 +10,30 @@ const SelectTransport = () => {
     sessionStorage.setItem('transportType', type);
     const role = user?.role;
 
-    if (role === 'party Master') {
-      navigate('/docket-booking');
-    } else if (role === 'vehicle Master') {
+    // Role-specific navigation
+    if (role === 'vehicleMaster') {
+      // Vehicle masters go to vehicle dispatch for both domestic and local
       navigate('/vehicle-dispatch');
-    } else if (role === 'master') {
+    } else if (role === 'partyMaster') {
+      // Party masters can access domestic and local dashboards
       if (type === 'Domestic') {
-        navigate('/domestic-dashboard');
+        navigate('/domestic/dashboard');
       } else if (type === 'Local') {
-        navigate('/local-dashboard');
+        navigate('/local/dashboard');
+      }
+    } else if (role === 'master') {
+      // Master users can access domestic and local dashboards
+      if (type === 'Domestic') {
+        navigate('/domestic/dashboard');
+      } else if (type === 'Local') {
+        navigate('/local/dashboard');
+      }
+    } else {
+      // Other roles (vendorMaster, rateCardMaster, bankMaster) can access dashboards
+      if (type === 'Domestic') {
+        navigate('/domestic/dashboard');
+      } else if (type === 'Local') {
+        navigate('/local/dashboard');
       }
     }
   };
