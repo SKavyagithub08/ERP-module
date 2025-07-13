@@ -14,6 +14,7 @@ const SelectTransport = () => {
     if (role === 'vehicleMaster') {
       // Vehicle masters go to vehicle dispatch for both domestic and local
       navigate('/vehicle-dispatch');
+      
     } else if (role === 'partyMaster') {
       // Party masters can access domestic and local dashboards
       if (type === 'Domestic') {
